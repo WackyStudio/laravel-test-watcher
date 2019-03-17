@@ -1,0 +1,54 @@
+{
+    "name": "wackystudio/laravel-test-watcher",
+    "description": "A test file watcher that automatically runs the phpunit test methods inside a test class, based on a @auto annotation",
+    "keywords": [
+        "wackystudio",
+        "laravel-test-watcher"
+    ],
+    "homepage": "https://github.com/wackystudio/laravel-test-watcher",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Thomas Noergaard",
+            "email": "tgn@wackystudio.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "5.8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WackyStudio\\LaravelTestWatcher\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WackyStudio\\LaravelTestWatcher\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WackyStudio\\LaravelTestWatcher\\LaravelTestWatcherServiceProvider"
+            ],
+            "aliases": {
+                "LaravelTestWatcher": "WackyStudio\\LaravelTestWatcher\\LaravelTestWatcherFacade"
+            }
+        }
+    }
+}
