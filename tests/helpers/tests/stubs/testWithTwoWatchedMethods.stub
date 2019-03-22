@@ -1,0 +1,26 @@
+<?php
+
+namespace WackyStudio\LaravelTestWatcher\Tests\helpers\tests;
+
+use PHPUnit\Framework\TestCase;
+
+class TestThree extends TestCase
+{
+    /**
+     * @test
+     * @watch
+     */
+    public function it_serves_as_a_fake_test_for_a_real_test()
+    {
+        $this->assertTrue(true);
+    }
+
+     /**
+     * @test
+     * @watch
+     */
+    public function it_also_serves_as_a_fake_test()
+    {
+        $this->assertTrue(true);
+    }
+}
