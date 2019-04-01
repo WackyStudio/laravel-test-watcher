@@ -2,20 +2,18 @@
 
 namespace WackyStudio\LaravelTestWatcher;
 
-use React\ChildProcess\Process as ChildProcess;
 use React\EventLoop\LoopInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
-use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
-use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
-use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
-use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
-use function WyriHaximus\React\childProcessPromise;
 use WyriHaximus\React\ProcessOutcome;
+use Symfony\Component\Process\Process;
+use React\ChildProcess\Process as ChildProcess;
+use function WyriHaximus\React\childProcessPromise;
+use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
 
 class PHPUnitRunner
 {
-
     private $isRunningTests = false;
 
     /**
@@ -30,7 +28,6 @@ class PHPUnitRunner
      * @var CommandLineInterface
      */
     private $cli;
-
 
     /**
      * PHPUnitRunner constructor.
@@ -50,11 +47,10 @@ class PHPUnitRunner
     {
         $this->isRunningTests = true;
 
-        $this->filesToTestRepository->getFilesToTest()->each(function(TestFile $test) {
-
+        $this->filesToTestRepository->getFilesToTest()->each(function (TestFile $test) {
             $test->resetStatuses();
 
-            foreach ($test->getMethodsToWatch() as $key=>$method){
+            foreach ($test->getMethodsToWatch() as $key=>$method) {
                 $process = new Process([base_path().'/vendor/bin/phpunit', '--filter', $method, $test->getFilePath()]);
                 try {
                     $process->mustRun();
@@ -67,7 +63,6 @@ class PHPUnitRunner
                     $this->isRunningTests = false;
                 }
             }
-
         });
     }
 
@@ -75,17 +70,14 @@ class PHPUnitRunner
     {
         $this->isRunningTests = true;
 
-        $this->filesToTestRepository->getFilesToTest()->each(function(TestFile $test){
-
+        $this->filesToTestRepository->getFilesToTest()->each(function (TestFile $test) {
             $test->resetStatuses();
 
-            foreach ($test->getMethodsToWatch() as $key=>$method){
-
+            foreach ($test->getMethodsToWatch() as $key=>$method) {
                 $process = new ChildProcess(base_path()."/vendor/bin/phpunit --filter {$method} {$test->getFilePath()}");
 
                 childProcessPromise($this->loop, $process)
                     ->then(function (ProcessOutcome $result) use ($key, $test, $method) {
-
                         if ($result->getExitCode() === 0) {
                             $test->addPassedTest($method);
                         } else {
@@ -105,5 +97,4 @@ class PHPUnitRunner
     {
         return $this->isRunningTests;
     }
-
 }

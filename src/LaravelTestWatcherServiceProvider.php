@@ -2,19 +2,16 @@
 
 namespace WackyStudio\LaravelTestWatcher;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\ServiceProvider;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
-use Symfony\Component\Finder\Finder;
+use Illuminate\Support\ServiceProvider;
 use WackyStudio\LaravelTestWatcher\Console\TestWatcherCommand;
-use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
 use WackyStudio\LaravelTestWatcher\Finders\TestsAnnotatedWithWatchFinder;
+use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 
 class LaravelTestWatcherServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
      */
@@ -29,7 +26,7 @@ class LaravelTestWatcherServiceProvider extends ServiceProvider
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('laravel-test-watcher.php'),
+                __DIR__.'/../config/config.php' => config_path('laravel-test-watcher.php'),
             ], 'config');
             // Publishing the views.
             /*$this->publishes([
@@ -56,7 +53,7 @@ class LaravelTestWatcherServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'laravel-test-watcher');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-test-watcher');
 
         // Register the main class to use with the facade
         $this->app->singleton('laravel-test-watcher', function () {
