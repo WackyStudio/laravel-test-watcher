@@ -12,9 +12,11 @@ class TestFilesCollection
      */
     private $collection;
 
-    public function __construct()
+    public function __construct(Collection $collection = null)
     {
-        $this->collection = new Collection([]);
+        if($collection === null){
+            $this->collection = new Collection([]);
+        }
     }
 
     /**
@@ -45,28 +47,21 @@ class TestFilesCollection
 
     /**
      * @param TestFileContract $file
-     *
-     * @return $this
      */
     public function updateOrAdd(TestFileContract $file)
     {
         $this->update($file);
 
-        return $this;
     }
 
     /**
      * @param TestFileContract $file
-     *
-     * @return $this
      */
     public function removeIfExist(TestFileContract $file)
     {
-        $this->collection = $this->collection->filter(function (TestFileContract $item) use ($file) {
+        $this->collection  = $this->collection->filter(function (TestFileContract $item) use ($file) {
             return $item->getFilePath() !== $file->getFilePath();
         })->values();
-
-        return $this;
     }
 
     public function has(TestFileContract $file)
@@ -133,5 +128,10 @@ class TestFilesCollection
             'updated' => $updated->toArray(),
             'removed' => $removed->toArray(),
         ];
+    }
+
+    public function __clone()
+    {
+        return new TestFilesCollection(new Collection($this->collection->toArray()));
     }
 }

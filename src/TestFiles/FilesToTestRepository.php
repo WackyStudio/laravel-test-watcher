@@ -32,14 +32,8 @@ class FilesToTestRepository
         foreach ($files as $file) {
             $testFile = $this->testFinder->findAnnotatedTests($file);
             if ($testFile->hasAnyTests()) {
-                if (! $this->collection->has($testFile)) {
-                    //$this->display->startedWatching($testFile);
-                }
                 $this->collection->updateOrAdd($testFile);
             } else {
-                if ($this->collection->has($testFile) && $testFile->getClassName() !== 'invalid') {
-                    //$this->display->stoppedWatching($testFile);
-                }
                 $this->collection->removeIfExist($testFile);
             }
         }

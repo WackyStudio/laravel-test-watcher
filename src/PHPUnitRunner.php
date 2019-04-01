@@ -45,6 +45,10 @@ class PHPUnitRunner
 
     public function run()
     {
+        if($this->filesToTestRepository->getFilesToTest()->count() === 0){
+            return;
+        }
+
         $this->isRunningTests = true;
 
         $this->filesToTestRepository->getFilesToTest()->each(function (TestFile $test) {
@@ -61,6 +65,7 @@ class PHPUnitRunner
 
                 if ($key == array_keys($test->getMethodsToWatch())[count($test->getMethodsToWatch()) - 1]) {
                     $this->isRunningTests = false;
+                    $this->cli->render();
                 }
             }
         });
