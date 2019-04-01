@@ -51,7 +51,6 @@ class TestFilesCollection
     public function updateOrAdd(TestFileContract $file)
     {
         $this->update($file);
-
     }
 
     /**

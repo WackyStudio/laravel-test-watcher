@@ -13,3 +13,7 @@ Updated PHP version dependency to 7.2 in composer.json file
 ## 1.0.2 - 2019-04-01
 
 Removed version number from CLI UI header
+
+## 1.0.3 - 2019-04-01
+
+Bug fixes
