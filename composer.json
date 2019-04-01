@@ -1,6 +1,6 @@
 {
     "name": "wackystudio/laravel-test-watcher",
-    "description": "A test file watcher that automatically runs the phpunit test methods inside a test class, based on a @auto annotation",
+    "description": "A test file watcher for Laravel that automatically runs specific test cases based on a @watch annotation",
     "keywords": [
         "wackystudio",
         "laravel-test-watcher"
