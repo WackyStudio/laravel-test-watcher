@@ -52,7 +52,6 @@ class CommandLineInterface
         $this->climate->out(implode(PHP_EOL, [
             '<bold>Laravel Test Watcher</bold>',
             'By Wacky Studio',
-            'Ver: 1.0.1',
             '',
             '____________________',
         ]));
