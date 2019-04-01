@@ -3,14 +3,13 @@
 namespace WackyStudio\LaravelTestWatcher\Finders;
 
 use Illuminate\Support\Collection;
-use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
-use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
-use WackyStudio\LaravelTestWatcher\TestFiles\InvalidTestFile;
 use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
+use WackyStudio\LaravelTestWatcher\TestFiles\InvalidTestFile;
+use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
+use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 
 class TestsAnnotatedWithWatchFinder implements AnnotatedTestsFinderContract
 {
-
     /**
      * @param string $filePath
      * @param string $fileContents
@@ -19,13 +18,12 @@ class TestsAnnotatedWithWatchFinder implements AnnotatedTestsFinderContract
      */
     public function findAnnotatedTests(string $filePath, string $fileContents = '')
     {
-        if($fileContents === ''){
-            try{
+        if ($fileContents === '') {
+            try {
                 $fileContents = file_get_contents($filePath);
-            }catch (\Exception $exception){
+            } catch (\Exception $exception) {
                 return new InvalidTestFile($filePath);
             }
-
         }
 
         $tokens = $this->convertContentsToTokenCollection($fileContents);
@@ -71,12 +69,12 @@ class TestsAnnotatedWithWatchFinder implements AnnotatedTestsFinderContract
         foreach ($tokens as $key => $token) {
             if (strpos($token, 'namespace') !== false) {
                 $currentKey = 1;
-                while($tokens[$key + $currentKey] !== 'use' && $tokens[$key + $currentKey] !== 'class'){
+                while ($tokens[$key + $currentKey] !== 'use' && $tokens[$key + $currentKey] !== 'class') {
                     array_push($namespace, $tokens[$key + $currentKey]);
                     $currentKey++;
                 }
 
-                return implode('',$namespace);
+                return implode('', $namespace);
             }
         }
 
@@ -119,6 +117,4 @@ class TestsAnnotatedWithWatchFinder implements AnnotatedTestsFinderContract
 
         return $testMethods;
     }
-
-
 }

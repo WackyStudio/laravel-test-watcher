@@ -3,12 +3,11 @@
 namespace WackyStudio\LaravelTestWatcher\TestFiles;
 
 use Illuminate\Support\Collection;
-use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
+use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 
 class FilesToTestRepository
 {
-
     /**
      * @var AnnotatedTestsFinderContract
      */
@@ -33,7 +32,7 @@ class FilesToTestRepository
         foreach ($files as $file) {
             $testFile = $this->testFinder->findAnnotatedTests($file);
             if ($testFile->hasAnyTests()) {
-                if ( ! $this->collection->has($testFile)) {
+                if (! $this->collection->has($testFile)) {
                     //$this->display->startedWatching($testFile);
                 }
                 $this->collection->updateOrAdd($testFile);
@@ -61,18 +60,16 @@ class FilesToTestRepository
     {
         $changes = $this->collection->compareToOldCollection($this->oldCollection);
 
-        return (new Collection($changes))->map(function($item){
-
-            return (new Collection($item))->map(function($file){
-
-                if($file instanceof TestFileContract){
+        return (new Collection($changes))->map(function ($item) {
+            return (new Collection($item))->map(function ($file) {
+                if ($file instanceof TestFileContract) {
                     return [
                         'file' => $file->getNamespace().'\\'.$file->getClassName(),
                         'methods' => $file->getMethodsToWatch(),
                     ];
                 }
 
-                if(is_array($file) && isset($file['new']) && isset($file['old'])){
+                if (is_array($file) && isset($file['new']) && isset($file['old'])) {
                     return [
                         'file' => $file['new']->getNamespace().'\\'.$file['new']->getClassName(),
                         'methods' => $file['new']->getMethodsToWatch(),
@@ -84,5 +81,4 @@ class FilesToTestRepository
             });
         })->toArray();
     }
-
 }

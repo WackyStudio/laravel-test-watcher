@@ -4,7 +4,6 @@ namespace WackyStudio\LaravelTestWatcher\Contracts;
 
 interface TestFileContract
 {
-
     /**
      * @return bool
      */
@@ -29,5 +28,4 @@ interface TestFileContract
      * @return string
      */
     public function getFilePath();
-
 }

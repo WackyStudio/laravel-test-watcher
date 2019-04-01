@@ -2,18 +2,11 @@
 
 namespace WackyStudio\LaravelTestWatcher\Tests;
 
-
-use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
-use React\EventLoop\Factory;
-use React\EventLoop\LoopInterface;
-use Symfony\Component\Finder\Finder;
-use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
-use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher as LaravelTestWatcherFacade;
-use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
+use Illuminate\Support\Facades\Artisan;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
-use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
+use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher as LaravelTestWatcherFacade;
 
 class LaravelTestWatcherTest extends TestCase
 {
@@ -25,7 +18,7 @@ class LaravelTestWatcherTest extends TestCase
     protected function getPackageAliases($app)
     {
         return [
-            'LaravelTestWatcher' => LaravelTestWatcherFacade::class
+            'LaravelTestWatcher' => LaravelTestWatcherFacade::class,
         ];
     }
 
@@ -47,6 +40,4 @@ class LaravelTestWatcherTest extends TestCase
 
         $this->assertEquals('Starting test watcher...'.PHP_EOL, $output);
     }
-
-
 }

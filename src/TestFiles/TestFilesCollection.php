@@ -7,7 +7,6 @@ use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
 
 class TestFilesCollection
 {
-
     /**
      * @var Collection
      */
@@ -26,6 +25,7 @@ class TestFilesCollection
     public function add(TestFileContract $file)
     {
         $this->collection->add($file);
+
         return $this;
     }
 
@@ -36,9 +36,10 @@ class TestFilesCollection
      */
     public function update(TestFileContract $file)
     {
-        $this->collection = $this->collection->filter(function(TestFileContract $item) use($file){
+        $this->collection = $this->collection->filter(function (TestFileContract $item) use ($file) {
             return $item->getFilePath() !== $file->getFilePath();
         })->add($file)->values();
+
         return $this;
     }
 
@@ -50,6 +51,7 @@ class TestFilesCollection
     public function updateOrAdd(TestFileContract $file)
     {
         $this->update($file);
+
         return $this;
     }
 
@@ -60,15 +62,16 @@ class TestFilesCollection
      */
     public function removeIfExist(TestFileContract $file)
     {
-        $this->collection = $this->collection->filter(function(TestFileContract $item) use($file){
+        $this->collection = $this->collection->filter(function (TestFileContract $item) use ($file) {
             return $item->getFilePath() !== $file->getFilePath();
         })->values();
+
         return $this;
     }
 
     public function has(TestFileContract $file)
     {
-        return $this->collection->contains(function (TestFileContract $item) use($file){
+        return $this->collection->contains(function (TestFileContract $item) use ($file) {
             return $item->getFilePath() === $file->getFilePath();
         });
     }
@@ -80,7 +83,7 @@ class TestFilesCollection
      */
     public function getByFilePath(string $filePath)
     {
-        return $this->collection->filter(function (TestFileContract $item) use($filePath) {
+        return $this->collection->filter(function (TestFileContract $item) use ($filePath) {
             return $item->getFilePath() === $filePath;
         })->first();
     }
@@ -98,33 +101,29 @@ class TestFilesCollection
      *
      * @return array
      */
-    public function compareToOldCollection(TestFilesCollection $oldTestFilesCollection)
+    public function compareToOldCollection(self $oldTestFilesCollection)
     {
         $oldCollection = $oldTestFilesCollection->getCollection();
-        $new = $this->collection->filter(function(TestFileContract $file) use($oldCollection){
-           return !$oldCollection->contains(function(TestFileContract $item) use($file){
-               return $file->getFilePath() === $item->getFilePath();
-           });
+        $new = $this->collection->filter(function (TestFileContract $file) use ($oldCollection) {
+            return ! $oldCollection->contains(function (TestFileContract $item) use ($file) {
+                return $file->getFilePath() === $item->getFilePath();
+            });
         })->values();
 
-
-        $updated = $this->collection->map(function(TestFileContract $file) use($oldCollection){
-
-            $oldMatch = $oldCollection->filter(function(TestFileContract $item) use($file){
+        $updated = $this->collection->map(function (TestFileContract $file) use ($oldCollection) {
+            $oldMatch = $oldCollection->filter(function (TestFileContract $item) use ($file) {
                 return $file->getFilePath() === $item->getFilePath();
             })->first();
 
-            if($oldMatch !== null && count(array_diff($oldMatch->getMethodsToWatch(), $file->getMethodsToWatch())))
-            {
+            if ($oldMatch !== null && count(array_diff($oldMatch->getMethodsToWatch(), $file->getMethodsToWatch()))) {
                 return ['old' => $oldMatch, 'new' => $file];
             }
-            return null;
-        })->filter(function($item){
+        })->filter(function ($item) {
             return $item !== null;
         })->values();
 
-        $removed = $oldCollection->filter(function(TestFileContract $file){
-            return !$this->collection->contains(function(TestFileContract $item) use($file){
+        $removed = $oldCollection->filter(function (TestFileContract $file) {
+            return ! $this->collection->contains(function (TestFileContract $item) use ($file) {
                 return $file->getFilePath() === $item->getFilePath();
             });
         })->values();

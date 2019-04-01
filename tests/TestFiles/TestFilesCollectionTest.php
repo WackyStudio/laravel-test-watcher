@@ -2,11 +2,10 @@
 
 namespace WackyStudio\LaravelTestWatcher\Tests\TestFiles;
 
-use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
+use Illuminate\Support\Collection;
 use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 use WackyStudio\LaravelTestWatcher\TestFiles\TestFilesCollection;
-
 
 class TestFilesCollectionTest extends TestCase
 {
@@ -30,11 +29,11 @@ class TestFilesCollectionTest extends TestCase
     public function it_can_update_an_existing_test_file_in_collection()
     {
         $collection = new TestFilesCollection;
-        $testfile = new TestFile('/path','Testing', [], 'namespace');
+        $testfile = new TestFile('/path', 'Testing', [], 'namespace');
         $collection->add($testfile);
         $this->assertTrue($collection->getCollection()->contains($testfile));
 
-        $testfileUpdated = new TestFile('/path','Testing', [
+        $testfileUpdated = new TestFile('/path', 'Testing', [
             'testMethodOne',
             'testMethodTwo',
         ], 'namespace');
@@ -48,11 +47,11 @@ class TestFilesCollectionTest extends TestCase
     public function it_can_update_an_exisiting_files_if_it_exists_or_it_will_add_it()
     {
         $collection = new TestFilesCollection;
-        $testfile = new TestFile('/path/one','Testing', [], 'namespace');
+        $testfile = new TestFile('/path/one', 'Testing', [], 'namespace');
         $collection->updateOrAdd($testfile);
         $this->assertTrue($collection->getCollection()->contains($testfile));
 
-        $testfileUpdated = new TestFile('/path/one','Testing', [
+        $testfileUpdated = new TestFile('/path/one', 'Testing', [
             'testMethodOne',
             'testMethodTwo',
         ], 'namespace');
@@ -61,7 +60,7 @@ class TestFilesCollectionTest extends TestCase
         $this->assertTrue($collection->getCollection()->contains($testfileUpdated));
         $this->assertFalse($collection->getCollection()->contains($testfile));
 
-        $newTestfile = new TestFile('/path/three','TestingAgain', [], 'namespace');
+        $newTestfile = new TestFile('/path/three', 'TestingAgain', [], 'namespace');
         $collection->updateOrAdd($newTestfile);
 
         $this->assertTrue($collection->getCollection()->contains($testfileUpdated));
@@ -73,9 +72,9 @@ class TestFilesCollectionTest extends TestCase
     {
         $collection = new TestFilesCollection;
 
-        $testfile = new TestFile('/path/one','Testing', [], 'namespace');
-        $testFileTwo = new TestFile('/path/two','TestingTwo', [], 'namespace');
-        $testFileThree = new TestFile('/path/three','TestingThree', [], 'namespace');
+        $testfile = new TestFile('/path/one', 'Testing', [], 'namespace');
+        $testFileTwo = new TestFile('/path/two', 'TestingTwo', [], 'namespace');
+        $testFileThree = new TestFile('/path/three', 'TestingThree', [], 'namespace');
 
         $collection->updateOrAdd($testfile);
         $collection->updateOrAdd($testFileTwo);
@@ -94,9 +93,9 @@ class TestFilesCollectionTest extends TestCase
     {
         $collection = new TestFilesCollection;
 
-        $testfile = new TestFile('/path/one','Testing', [], 'namespace');
-        $testFileTwo = new TestFile('/path/two','TestingTwo', [], 'namespace');
-        $testFileThree = new TestFile('/path/three','TestingThree', [], 'namespace');
+        $testfile = new TestFile('/path/one', 'Testing', [], 'namespace');
+        $testFileTwo = new TestFile('/path/two', 'TestingTwo', [], 'namespace');
+        $testFileThree = new TestFile('/path/three', 'TestingThree', [], 'namespace');
 
         $collection->updateOrAdd($testfile);
         $collection->updateOrAdd($testFileTwo);
@@ -114,7 +113,7 @@ class TestFilesCollectionTest extends TestCase
     {
         $collection = new TestFilesCollection;
 
-        $testfile = new TestFile('/path/one','Testing', [], 'namespace');
+        $testfile = new TestFile('/path/one', 'Testing', [], 'namespace');
         $collection->updateOrAdd($testfile);
         $this->assertTrue($collection->getCollection()->contains($testfile));
 
@@ -130,22 +129,21 @@ class TestFilesCollectionTest extends TestCase
     {
         $oldCollection = new TestFilesCollection;
 
-        $testfile = new TestFile('/path/one','Testing', [
+        $testfile = new TestFile('/path/one', 'Testing', [
             'test_method',
         ], 'namespace');
-        $testFileTwo = new TestFile('/path/two','TestingTwo', [
+        $testFileTwo = new TestFile('/path/two', 'TestingTwo', [
             'test_method',
         ], 'namespace');
 
         $oldCollection->updateOrAdd($testfile);
         $oldCollection->updateOrAdd($testFileTwo);
 
-
         $newCollection = new TestFilesCollection;
-        $newTestfile = new TestFile('/path/one','Testing', [
-            'new_test_method'
+        $newTestfile = new TestFile('/path/one', 'Testing', [
+            'new_test_method',
         ], 'namespace');
-        $testFileThree = new TestFile('/path/three','TestingThree', [], 'namespace');
+        $testFileThree = new TestFile('/path/three', 'TestingThree', [], 'namespace');
         $newCollection->updateOrAdd($newTestfile);
         $newCollection->updateOrAdd($testFileThree);
 
@@ -158,12 +156,11 @@ class TestFilesCollectionTest extends TestCase
                 [
                     'old' => $testfile,
                     'new' => $newTestfile,
-                ]
+                ],
             ],
             'removed' => [
                 $testFileTwo,
-            ]
+            ],
         ], $result);
-
     }
 }

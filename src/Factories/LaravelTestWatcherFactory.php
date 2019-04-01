@@ -3,29 +3,27 @@
 namespace WackyStudio\LaravelTestWatcher\Factories;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Config;
-use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
 use Symfony\Component\Finder\Finder;
-use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
-use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
+use Illuminate\Support\Facades\Config;
+use Yosymfony\ResourceWatcher\ResourceWatcher;
 use Yosymfony\ResourceWatcher\Crc32ContentHash;
 use Yosymfony\ResourceWatcher\ResourceCacheMemory;
-use Yosymfony\ResourceWatcher\ResourceCachePhpFile;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
+use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 
 class LaravelTestWatcherFactory
 {
-
     /**
      * @return LaravelTestWatcher
      */
-    public static function create(){
+    public static function create()
+    {
         return (new static())->make();
     }
 
     /**
-     * Creates a new LaravelTestWatcher instance
+     * Creates a new LaravelTestWatcher instance.
      *
      * @return LaravelTestWatcher
      */
@@ -75,9 +73,8 @@ class LaravelTestWatcherFactory
         return $finder;
     }
 
-
     /**
-     * Maps directories given in config file to base path
+     * Maps directories given in config file to base path.
      *
      * @return array
      */
@@ -85,9 +82,8 @@ class LaravelTestWatcherFactory
     {
         $directories = Collection::make(Config::get('laravel-test-watcher.watch_directories'));
 
-        return $directories->map(function($directory){
+        return $directories->map(function ($directory) {
             return base_path($directory);
         })->toArray();
     }
-
 }

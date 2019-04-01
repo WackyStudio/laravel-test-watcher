@@ -3,16 +3,14 @@
 namespace WackyStudio\LaravelTestWatcher\Tests\TestFiles;
 
 use Orchestra\Testbench\TestCase;
+use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
+use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
 use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher as LaravelTestWatcherFacade;
-use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
-use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
-use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
-use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 
 class FilesToTestRepositoryTest extends TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [LaravelTestWatcherServiceProvider::class];
@@ -21,7 +19,7 @@ class FilesToTestRepositoryTest extends TestCase
     protected function getPackageAliases($app)
     {
         return [
-            'LaravelTestWatcher' => LaravelTestWatcherFacade::class
+            'LaravelTestWatcher' => LaravelTestWatcherFacade::class,
         ];
     }
 
@@ -32,7 +30,7 @@ class FilesToTestRepositoryTest extends TestCase
 
     protected function tearDown(): void
     {
-        if(file_exists(__DIR__.'/../helpers/tests/TestThree.php')){
+        if (file_exists(__DIR__.'/../helpers/tests/TestThree.php')) {
             unlink(__DIR__.'/../helpers/tests/TestThree.php');
         }
         parent::tearDown();
@@ -48,7 +46,7 @@ class FilesToTestRepositoryTest extends TestCase
             'WackyStudio\LaravelTestWatcher\Tests\helpers\tests'
         );
         $testTwoTestFile = new TestFile(
-            __DIR__.'/../helpers/tests/TestTwo.php','TestTwo',
+            __DIR__.'/../helpers/tests/TestTwo.php', 'TestTwo',
             ['it_also_serves_as_a_fake_test_for_a_real_test'],
             'WackyStudio\LaravelTestWatcher\Tests\helpers\tests'
         );
@@ -68,7 +66,7 @@ class FilesToTestRepositoryTest extends TestCase
 
         $files = [
             __DIR__.'/../helpers/tests/TestOne.php',
-            __DIR__.'/../helpers/tests/TestTwo.php'
+            __DIR__.'/../helpers/tests/TestTwo.php',
         ];
 
         /** @var FilesToTestRepository $repository */
@@ -78,7 +76,6 @@ class FilesToTestRepositoryTest extends TestCase
 
         $this->assertEquals($filesToTest[0], $testOneTestFile);
         $this->assertEquals($filesToTest[1], $testTwoTestFile);
-
     }
 
     /** @test */
@@ -93,13 +90,13 @@ class FilesToTestRepositoryTest extends TestCase
 
         $filesToTest = $repository->getFilesToTest();
         $this->assertEquals(1, $filesToTest->count());
-        $this->assertEquals( __DIR__.'/../helpers/tests/TestOne.php', $filesToTest->first()->getFilePath());
+        $this->assertEquals(__DIR__.'/../helpers/tests/TestOne.php', $filesToTest->first()->getFilePath());
     }
-    
+
     /** @test */
     public function it_updates_files_to_test_collection_and_removes_files_that_no_longer_have_any_annotated_tests()
     {
-        file_put_contents( __DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithWatch.stub'));
+        file_put_contents(__DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithWatch.stub'));
 
         /** @var FilesToTestRepository $repository */
         $repository = app(FilesToTestRepository::class);
@@ -111,10 +108,10 @@ class FilesToTestRepositoryTest extends TestCase
 
         $filesToTest = $repository->getFilesToTest();
         $this->assertEquals(2, $filesToTest->count());
-        $this->assertEquals( __DIR__.'/../helpers/tests/TestOne.php', $filesToTest->get(0)->getFilePath());
-        $this->assertEquals( __DIR__.'/../helpers/tests/TestThree.php', $filesToTest->get(1)->getFilePath());
+        $this->assertEquals(__DIR__.'/../helpers/tests/TestOne.php', $filesToTest->get(0)->getFilePath());
+        $this->assertEquals(__DIR__.'/../helpers/tests/TestThree.php', $filesToTest->get(1)->getFilePath());
 
-        file_put_contents( __DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithoutWatch.stub'));
+        file_put_contents(__DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithoutWatch.stub'));
 
         $repository->update([
             __DIR__.'/../helpers/tests/TestOne.php',
@@ -124,30 +121,30 @@ class FilesToTestRepositoryTest extends TestCase
 
         $filesToTest = $repository->getFilesToTest();
         $this->assertEquals(1, $filesToTest->count());
-        $this->assertEquals( __DIR__.'/../helpers/tests/TestOne.php', $filesToTest->get(0)->getFilePath());
+        $this->assertEquals(__DIR__.'/../helpers/tests/TestOne.php', $filesToTest->get(0)->getFilePath());
         $this->assertNull($filesToTest->get(1));
     }
-    
+
     /** @test */
     public function it_compares_old_collection_to_new_collection_to_determine_which_files_are_new()
     {
-        file_put_contents( __DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithTwoWatchedMethods.stub'));
+        file_put_contents(__DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithTwoWatchedMethods.stub'));
 
         $expectedChanges = [
             'added' => [
                 [
                     'file' => 'WackyStudio\LaravelTestWatcher\Tests\helpers\tests\TestOne',
                     'methods' => [
-                        'it_serves_as_a_fake_test_for_a_real_test'
-                    ]
+                        'it_serves_as_a_fake_test_for_a_real_test',
+                    ],
                 ],
                 [
                     'file' => 'WackyStudio\LaravelTestWatcher\Tests\helpers\tests\TestThree',
                     'methods' => [
                         'it_serves_as_a_fake_test_for_a_real_test',
-                        'it_also_serves_as_a_fake_test'
-                    ]
-                ]
+                        'it_also_serves_as_a_fake_test',
+                    ],
+                ],
             ],
             'updated' => [],
             'removed' => [],
@@ -167,7 +164,7 @@ class FilesToTestRepositoryTest extends TestCase
     /** @test */
     public function it_compares_old_collection_to_new_collection_to_determine_which_files_are_updated()
     {
-        file_put_contents( __DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithTwoWatchedMethods.stub'));
+        file_put_contents(__DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithTwoWatchedMethods.stub'));
 
         $expectedChanges = [
             'added' => [],
@@ -178,9 +175,9 @@ class FilesToTestRepositoryTest extends TestCase
                         'it_serves_as_a_fake_test_for_a_real_test',
                     ],
                     'droppedMethods' => [
-                        'it_also_serves_as_a_fake_test'
-                    ]
-                ]
+                        'it_also_serves_as_a_fake_test',
+                    ],
+                ],
             ],
             'removed' => [],
         ];
@@ -192,7 +189,7 @@ class FilesToTestRepositoryTest extends TestCase
             __DIR__.'/../helpers/tests/TestThree.php',
         ]);
 
-        file_put_contents( __DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithOneWatchOneUnwatched.stub'));
+        file_put_contents(__DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithOneWatchOneUnwatched.stub'));
 
         $repository->update([
             __DIR__.'/../helpers/tests/TestThree.php',
@@ -205,7 +202,7 @@ class FilesToTestRepositoryTest extends TestCase
     /** @test */
     public function it_compares_old_collection_to_new_collection_to_determine_which_files_are_removed()
     {
-        file_put_contents( __DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithTwoWatchedMethods.stub'));
+        file_put_contents(__DIR__.'/../helpers/tests/TestThree.php', file_get_contents(__DIR__.'/../helpers/tests/stubs/testWithTwoWatchedMethods.stub'));
 
         $expectedChanges = [
             'added' => [],
@@ -215,9 +212,9 @@ class FilesToTestRepositoryTest extends TestCase
                     'file' => 'WackyStudio\LaravelTestWatcher\Tests\helpers\tests\TestThree',
                     'methods' => [
                         'it_serves_as_a_fake_test_for_a_real_test',
-                        'it_also_serves_as_a_fake_test'
+                        'it_also_serves_as_a_fake_test',
                     ],
-                ]
+                ],
             ],
         ];
 
@@ -228,7 +225,7 @@ class FilesToTestRepositoryTest extends TestCase
             __DIR__.'/../helpers/tests/TestThree.php',
         ]);
 
-        unlink( __DIR__.'/../helpers/tests/TestThree.php');
+        unlink(__DIR__.'/../helpers/tests/TestThree.php');
 
         $repository->update([
             __DIR__.'/../helpers/tests/TestThree.php',
@@ -237,7 +234,4 @@ class FilesToTestRepositoryTest extends TestCase
         $changes = $repository->getChanges();
         $this->assertEquals($expectedChanges, $changes);
     }
-
-
-
 }

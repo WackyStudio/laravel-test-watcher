@@ -2,16 +2,14 @@
 
 namespace WackyStudio\LaravelTestWatcher\Tests\Factories;
 
-
 use Orchestra\Testbench\TestCase;
-use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
+use Yosymfony\ResourceWatcher\ResourceWatcher;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
 
 class LaravelTestWatcherFactoryTest extends TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [
@@ -21,7 +19,7 @@ class LaravelTestWatcherFactoryTest extends TestCase
 
     protected function getBasePath()
     {
-        return __DIR__ . '/../helpers';
+        return __DIR__.'/../helpers';
     }
 
     /**
@@ -55,7 +53,7 @@ class LaravelTestWatcherFactoryTest extends TestCase
         $finder = $factory->makeFinderForTestFiles();
 
         $files = collect([]);
-        foreach ($finder as $file){
+        foreach ($finder as $file) {
             $files->add($file->getFilename());
         }
 
@@ -71,7 +69,7 @@ class LaravelTestWatcherFactoryTest extends TestCase
 
         $this->assertInstanceOf(ResourceWatcher::class, $watcher);
     }
-    
+
     /**
      * @test
      */
@@ -80,5 +78,4 @@ class LaravelTestWatcherFactoryTest extends TestCase
         $watcher = LaravelTestWatcherFactory::create();
         $this->assertInstanceOf(LaravelTestWatcher::class, $watcher);
     }
-
 }
