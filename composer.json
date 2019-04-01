@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "illuminate/support": "5.8.*",
         "league/climate": "^3.5",
         "react/event-loop": "^1.1",
