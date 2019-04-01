@@ -1,7 +1,7 @@
 # Run specific tests methods when your test or source code changes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/wackystudio/laravel-test-watcher.svg?style=flat-square)](https://packagist.org/packages/wackystudio/laravel-test-watcher)
-[![Build Status](https://img.shields.io/travis/wackystudio/laravel-test-watcher/master.svg?style=flat-square)](https://travis-ci.org/WackyStudio/laravel-test-watcher.svg?branch=master)
+[![Build Status](https://travis-ci.org/WackyStudio/laravel-test-watcher.svg?branch=master)](https://travis-ci.org/WackyStudio/laravel-test-watcher.svg?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/wackystudio/laravel-test-watcher.svg?style=flat-square)](https://packagist.org/packages/wackystudio/laravel-test-watcher)
 
 When looking at our testing workflow, we realized how often we were triggering our tests, especially single test cases or groups of test cases.
