@@ -31,13 +31,13 @@ class CommandLineInterface
 
     public function render()
     {
-       /* $this->loop->addPeriodicTimer(1, function () {
-            $this->climate->clear();
-            $this->headerContent();
-            $this->emptyLine();
-            $this->testsContent();
-            $this->failedTestsContent();
-        });*/
+        /* $this->loop->addPeriodicTimer(1, function () {
+             $this->climate->clear();
+             $this->headerContent();
+             $this->emptyLine();
+             $this->testsContent();
+             $this->failedTestsContent();
+         });*/
 
         $this->climate->clear();
         $this->headerContent();
@@ -65,8 +65,9 @@ class CommandLineInterface
 
     public function testsContent()
     {
-        if($this->filesToTest->getFilesToTest()->count() == 0){
+        if ($this->filesToTest->getFilesToTest()->count() == 0) {
             $this->climate->out('<yellow><bold>No test cases to watch</bold></yellow>');
+
             return;
         }
 

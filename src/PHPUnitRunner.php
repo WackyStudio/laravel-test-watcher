@@ -45,7 +45,7 @@ class PHPUnitRunner
 
     public function run()
     {
-        if($this->filesToTestRepository->getFilesToTest()->count() === 0){
+        if ($this->filesToTestRepository->getFilesToTest()->count() === 0) {
             return;
         }
 

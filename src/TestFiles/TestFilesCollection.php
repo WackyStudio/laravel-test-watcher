@@ -14,7 +14,7 @@ class TestFilesCollection
 
     public function __construct(Collection $collection = null)
     {
-        if($collection === null){
+        if ($collection === null) {
             $this->collection = new Collection([]);
         }
     }
@@ -51,7 +51,6 @@ class TestFilesCollection
     public function updateOrAdd(TestFileContract $file)
     {
         $this->update($file);
-
     }
 
     /**
@@ -59,7 +58,7 @@ class TestFilesCollection
      */
     public function removeIfExist(TestFileContract $file)
     {
-        $this->collection  = $this->collection->filter(function (TestFileContract $item) use ($file) {
+        $this->collection = $this->collection->filter(function (TestFileContract $item) use ($file) {
             return $item->getFilePath() !== $file->getFilePath();
         })->values();
     }
@@ -132,6 +131,6 @@ class TestFilesCollection
 
     public function __clone()
     {
-        return new TestFilesCollection(new Collection($this->collection->toArray()));
+        return new self(new Collection($this->collection->toArray()));
     }
 }
