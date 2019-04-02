@@ -114,7 +114,7 @@ class CommandLineInterface
             $failedOutput->each(function ($content) {
                 $this->emptyLine();
 
-                collect(explode(PHP_EOL, $content))->filter(function ($item) {
+                collect(explode("\n", $content))->filter(function ($item) {
                     return trim($item) !== '';
                 })->values()
                   ->only(4, 5, 6)

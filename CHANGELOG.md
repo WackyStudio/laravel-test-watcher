@@ -17,3 +17,7 @@ Removed version number from CLI UI header
 ## 1.0.3 - 2019-04-01
 
 Bug fixes
+
+## 1.0.4 - 2019-04-02
+
+Fixed issue with missing error output on Windows
