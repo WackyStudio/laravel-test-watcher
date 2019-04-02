@@ -68,6 +68,18 @@ php artisan vendor:publish
 ```
 publish the configuration file for Laravel Test Watcher only or select the config tag to publish configuration files, for all packages in your Laravel Application.
 
+### Limitations
+Even though Laravel Test Watcher can watch as many tests as you like, 
+it is not the intention that you should use it on every single test case in your test suite but instead, use it on the tests for the current feature you are implementing.
+
+Since it is not possible to tell PHPUnit to run multiple single test cases so all test cases can be tested in a single PHPUnit session, each test case is running in its own PHPUnit session, which makes the execution of the tests a bit slower. 
+
+If you need to run all your tests, we recommend you run a good old:
+```bash
+./vendor/bin/phpunit
+```
+This will run through all of your tests in your test suite much faster.
+
 ### Testing
 ``` bash
 composer test
