@@ -1,3 +1,4 @@
+![Logo](logo.jpg)
 # Run specific tests methods when your test or source code changes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/wackystudio/laravel-test-watcher.svg?style=flat-square)](https://packagist.org/packages/wackystudio/laravel-test-watcher)
