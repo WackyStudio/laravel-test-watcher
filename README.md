@@ -85,6 +85,13 @@ If you need to run all your tests, we recommend you run a good old:
 ```
 This will run through all of your tests in your test suite much faster.
 
+When starting Laravel Test Watcher through the artisan command, it bootstraps the entire Laravel application and loads the environment variables defined in the `.env` file. 
+This gives us some issues since PHPUnit does not override the loaded environment variables when running tests which make each test run with the environment variables already loaded, 
+instead of the testing environment variables it should be using. 
+To mitigate this, Laravel Test Watcher requires a `.env.testing` file where all your environment variables for your testing setup is defined. 
+This is then used to override the environment variables when Laravel Test Watcher has been instantiated. 
+Unfortunately, this means that you cannot use the environment variables you have defined in your `phpunit.xml` file.
+
 ### Testing
 ``` bash
 composer test
