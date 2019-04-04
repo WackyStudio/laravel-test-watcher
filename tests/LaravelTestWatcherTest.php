@@ -4,12 +4,12 @@ namespace WackyStudio\LaravelTestWatcher\Tests;
 
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Artisan;
-use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
-use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
-use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
-use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher as LaravelTestWatcherFacade;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
+use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
+use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
+use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher as LaravelTestWatcherFacade;
 
 class LaravelTestWatcherTest extends TestCase
 {
@@ -59,7 +59,5 @@ class LaravelTestWatcherTest extends TestCase
         $watcher = LaravelTestWatcherFactory::create();
 
         $watcher->prepare();
-
     }
-
 }
