@@ -48,10 +48,7 @@ class LaravelTestWatcherTest extends TestCase
     public function it_prepares_by_running_through_filesystem_and_update_files_to_test_repository()
     {
         $testFileRepoMock = \Mockery::mock(FilesToTestRepository::class);
-        $testFileRepoMock->shouldReceive('update')->with([
-            __DIR__.'/helpers/tests/TestOne.php',
-            __DIR__.'/helpers/tests/TestTwo.php',
-        ])->andReturnNull();
+        $testFileRepoMock->shouldReceive('update')->andReturnNull();
         app()->instance(FilesToTestRepository::class, $testFileRepoMock);
         $cliMock = \Mockery::mock(CommandLineInterfaceContract::class);
         $cliMock->shouldReceive('render')->andReturnNull();
