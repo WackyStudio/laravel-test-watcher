@@ -49,8 +49,8 @@ class LaravelTestWatcherTest extends TestCase
     {
         $testFileRepoMock = \Mockery::mock(FilesToTestRepository::class);
         $testFileRepoMock->shouldReceive('update')->with([
-            $this->getBasePath().'/tests/TestOne.php',
-            $this->getBasePath().'/tests/TestTwo.php',
+            __DIR__.'/helpers/tests/TestOne.php',
+            __DIR__.'/helpers/tests/TestTwo.php',
         ])->andReturnNull();
         app()->instance(FilesToTestRepository::class, $testFileRepoMock);
         $cliMock = \Mockery::mock(CommandLineInterfaceContract::class);
