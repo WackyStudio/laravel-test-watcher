@@ -21,3 +21,7 @@ Bug fixes
 ## 1.0.4 - 2019-04-02
 
 Fixed issue with missing error output on Windows
+
+## 1.0.5 - 2019-04-04
+
+Fixed issue where Laravel Test Watcher's environment would override PHPUnits environment.

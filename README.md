@@ -58,6 +58,10 @@ To watch tests and source file for changes, run the test watcher through Laravel
 php artisan tests:watch
 ```
 
+**NOTICE:**
+For database testing we recommend that you create a `.env.testing` environment file with details for a dedicated testing database. 
+If you don't do this, Laravel Test Watcher will test against the database given in the `.env` file, which we do not recommend.
+
 ### Configuration
 By default Laravel Test Watcher watches all files in the `app` `routes` and `tests` folders, 
 meaning that any changes to a file in these directories, makes Laravel Test Watcher run all the watched test cases.

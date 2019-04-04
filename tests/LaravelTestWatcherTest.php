@@ -4,9 +4,12 @@ namespace WackyStudio\LaravelTestWatcher\Tests;
 
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Artisan;
+use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
+use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
 use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher as LaravelTestWatcherFacade;
+use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
 
 class LaravelTestWatcherTest extends TestCase
 {
@@ -40,4 +43,23 @@ class LaravelTestWatcherTest extends TestCase
 
         $this->assertEquals('Starting test watcher...'.PHP_EOL, $output);
     }
+
+    /** @test */
+    public function it_prepares_by_running_through_filesystem_and_update_files_to_test_repository()
+    {
+        $testFileRepoMock = \Mockery::mock(FilesToTestRepository::class);
+        $testFileRepoMock->shouldReceive('update')->with([
+            $this->getBasePath().'/tests/TestOne.php',
+            $this->getBasePath().'/tests/TestTwo.php',
+        ])->andReturnNull();
+        app()->instance(FilesToTestRepository::class, $testFileRepoMock);
+        $cliMock = \Mockery::mock(CommandLineInterfaceContract::class);
+        $cliMock->shouldReceive('render')->andReturnNull();
+        app()->instance(CommandLineInterfaceContract::class, $cliMock);
+        $watcher = LaravelTestWatcherFactory::create();
+
+        $watcher->prepare();
+
+    }
+
 }
