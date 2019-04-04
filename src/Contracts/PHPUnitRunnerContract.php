@@ -4,7 +4,6 @@ namespace WackyStudio\LaravelTestWatcher\Contracts;
 
 interface PHPUnitRunnerContract
 {
-
     /**
      * @return void
      */
