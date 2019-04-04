@@ -2,18 +2,16 @@
 
 namespace WackyStudio\LaravelTestWatcher;
 
-use League\CLImate\CLImate;
 use React\EventLoop\LoopInterface;
 use Symfony\Component\Finder\Finder;
-use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
-use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
+use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
 use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
 
 class LaravelTestWatcher
 {
-
     /**
      * @var LoopInterface
      */
@@ -90,5 +88,4 @@ class LaravelTestWatcher
         });
         $this->loop->run();
     }
-
 }

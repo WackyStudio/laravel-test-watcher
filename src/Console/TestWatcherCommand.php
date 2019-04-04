@@ -8,7 +8,6 @@ use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher;
 
 class TestWatcherCommand extends Command
 {
-
     protected $signature = 'tests:watch';
     protected $description = 'Watch tests and source code for changes and run tests automatically';
 
@@ -26,5 +25,4 @@ class TestWatcherCommand extends Command
             $dotenv->overload();
         }
     }
-
 }

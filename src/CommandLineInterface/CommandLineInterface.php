@@ -3,14 +3,12 @@
 namespace WackyStudio\LaravelTestWatcher\CommandLineInterface;
 
 use League\CLImate\CLImate;
-use React\EventLoop\LoopInterface;
-use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
 use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
 
 class CommandLineInterface implements CommandLineInterfaceContract
 {
-
     /**
      * @var CLImate
      */
