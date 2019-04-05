@@ -60,6 +60,7 @@ class LaravelTestWatcher
         }
         $this->filesToTest->update($files);
         $this->cli->render();
+        $this->phpunitRunner->run();
     }
 
     public function watch()
@@ -82,7 +83,6 @@ class LaravelTestWatcher
                 if (count($result->getUpdatedFiles()) > 0) {
                     $this->filesToTest->update($result->getUpdatedFiles());
                     $this->phpunitRunner->run();
-                    $this->cli->render();
                 }
             }
         });

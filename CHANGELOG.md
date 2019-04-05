@@ -25,3 +25,7 @@ Fixed issue with missing error output on Windows
 ## 1.0.5 - 2019-04-04
 
 Fixed issue where Laravel Test Watcher's environment would override PHPUnits environment.
+
+## 1.0.6 - 2019-04-05
+
+Fixed bug where tests with long failure output would get cut off
