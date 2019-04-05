@@ -4,8 +4,8 @@ namespace WackyStudio\LaravelTestWatcher\Tests;
 
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Artisan;
-use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
+use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
 use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
