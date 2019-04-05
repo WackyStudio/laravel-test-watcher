@@ -4,6 +4,7 @@ namespace WackyStudio\LaravelTestWatcher\Tests;
 
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Artisan;
+use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
@@ -53,6 +54,9 @@ class LaravelTestWatcherTest extends TestCase
         $cliMock = \Mockery::mock(CommandLineInterfaceContract::class);
         $cliMock->shouldReceive('render')->andReturnNull();
         app()->instance(CommandLineInterfaceContract::class, $cliMock);
+        $phpunitMock = \Mockery::mock(PHPUnitRunnerContract::class);
+        $phpunitMock->shouldReceive('run')->andReturnNull();
+        app()->instance(PHPUnitRunnerContract::class, $phpunitMock);
         $watcher = LaravelTestWatcherFactory::create();
 
         $watcher->prepare();
