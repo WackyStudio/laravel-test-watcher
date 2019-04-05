@@ -29,3 +29,7 @@ Fixed issue where Laravel Test Watcher's environment would override PHPUnits env
 ## 1.0.6 - 2019-04-05
 
 Fixed bug where tests with long failure output would get cut off
+
+## 1.0.7 - 2019-04-05
+
+Fixed bug where CLI did not update when all watch annotations has been removed

@@ -83,6 +83,7 @@ class LaravelTestWatcher
                 if (count($result->getUpdatedFiles()) > 0) {
                     $this->filesToTest->update($result->getUpdatedFiles());
                     $this->phpunitRunner->run();
+                    $this->cli->render();
                 }
             }
         });
