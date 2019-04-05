@@ -2,8 +2,8 @@
 
 namespace WackyStudio\LaravelTestWatcher\CommandLineInterface;
 
-use Illuminate\Support\Collection;
 use League\CLImate\CLImate;
+use Illuminate\Support\Collection;
 use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
 use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
@@ -68,29 +68,21 @@ class CommandLineInterface implements CommandLineInterfaceContract
         $tests = $this->filesToTest
             ->getFilesToTest()
             ->map(function (TestFile $file) use ($rowsNeeded) {
-               $passed = collect($file->getPassedTests());
-               $failed = collect($file->getFailedTests());
+                $passed = collect($file->getPassedTests());
+                $failed = collect($file->getFailedTests());
 
-               return collect([
+                return collect([
                    "<underline><bold><white>{$file->getNamespace()}\\</white><yellow>{$file->getClassName()}</yellow></bold></underline>",
                    "\n",
                ])->merge(collect($file->getMethodsToWatch())->map(function ($item) use ($passed, $failed) {
                    if ($passed->contains($item)) {
-
                        return "<green>{$item}</green>";
-
                    } elseif ($failed->contains(function ($failed) use ($item) {
-
                        return $failed['method'] === $item;
-
                    })) {
-
                        return "<red>{$item}</red>";
-
                    } else {
-
                        return $item;
-
                    }
                }))->pad($rowsNeeded + 2, '<black></black>');
             });
@@ -139,7 +131,8 @@ class CommandLineInterface implements CommandLineInterfaceContract
      *
      * @return \Illuminate\Support\Collection
      */
-    private function removeLineBreaksAndEmptyLines($content){
+    private function removeLineBreaksAndEmptyLines($content)
+    {
         return collect(explode("\n", $content))->filter(function ($item) {
             return trim($item) !== '';
         })->values();
@@ -150,11 +143,13 @@ class CommandLineInterface implements CommandLineInterfaceContract
      *
      * @return Collection
      */
-    private function removeUnnecessaryPHPUnitOutput(Collection $collection){
+    private function removeUnnecessaryPHPUnitOutput(Collection $collection)
+    {
         $collection = $collection->slice(4)
                    ->values();
         $collection->pop();
         $collection->pop();
+
         return $collection;
     }
 }
