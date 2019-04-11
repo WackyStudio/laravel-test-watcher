@@ -4,7 +4,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/wackystudio/laravel-test-watcher.svg?style=flat-square)](https://packagist.org/packages/wackystudio/laravel-test-watcher)
 [![Build Status](https://travis-ci.org/WackyStudio/laravel-test-watcher.svg?branch=master&style=flat-square)](https://travis-ci.org/WackyStudio/laravel-test-watcher.svg?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/wackystudio/laravel-test-watcher.svg?style=flat-square)](https://packagist.org/packages/wackystudio/laravel-test-watcher)
-[![Known Vulnerabilities](https://snyk.io/test/github/{username}/{repo}/badge.svg?style=flat-square)](https://snyk.io/test/github/wackystudio/laravel-test-watcher)
+
 When looking at our testing workflow, we realized how often we were triggering our tests, especially single test cases or groups of test cases.
 Using an IDE like PHPStorm this is done quickly with a keyboard shortcut, but in other IDEs, or editors, this is not always as easy. 
 Therefore we have built Laravel Test Watcher.
