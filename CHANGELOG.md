@@ -33,3 +33,11 @@ Fixed bug where tests with long failure output would get cut off
 ## 1.0.7 - 2019-04-05
 
 Fixed bug where CLI did not update when all watch annotations has been removed
+
+## 1.0.8 - 2019-04-11
+
+Added composer.lock to repository for Snyk vulnerability testing
+
+## 1.0.9 - 2019-08-31
+
+Added Laravel 6.0 Compatibility 
