@@ -41,3 +41,7 @@ Added composer.lock to repository for Snyk vulnerability testing
 ## 1.0.9 - 2019-08-31
 
 Added Laravel 6.0 Compatibility 
+
+## 1.0.10 - 2019-08-31
+
+Added Laravel 6.* Compatibility 
