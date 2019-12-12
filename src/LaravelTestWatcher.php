@@ -4,11 +4,11 @@ namespace WackyStudio\LaravelTestWatcher;
 
 use React\EventLoop\LoopInterface;
 use Symfony\Component\Finder\Finder;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
+use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
 use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
-use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
-use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
+use Yosymfony\ResourceWatcher\ResourceWatcher;
 
 class LaravelTestWatcher
 {

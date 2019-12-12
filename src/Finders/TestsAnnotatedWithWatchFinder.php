@@ -3,10 +3,10 @@
 namespace WackyStudio\LaravelTestWatcher\Finders;
 
 use Illuminate\Support\Collection;
-use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
-use WackyStudio\LaravelTestWatcher\TestFiles\InvalidTestFile;
-use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
 use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
+use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
+use WackyStudio\LaravelTestWatcher\TestFiles\InvalidTestFile;
+use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 
 class TestsAnnotatedWithWatchFinder implements AnnotatedTestsFinderContract
 {
