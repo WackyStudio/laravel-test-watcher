@@ -42,6 +42,10 @@ Added composer.lock to repository for Snyk vulnerability testing
 
 Added Laravel 6.0 Compatibility 
 
-## 1.0.10 - 2019-08-31
+## 1.0.10 - 2019-12-12
 
 Added Laravel 6.* Compatibility 
+
+## 1.0.11 - 2019-12-12
+
+Bumped up other dependencies for compatibility with Laravel 6.7.0
