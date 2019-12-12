@@ -2,11 +2,11 @@
 
 namespace WackyStudio\LaravelTestWatcher\CommandLineInterface;
 
-use League\CLImate\CLImate;
 use Illuminate\Support\Collection;
-use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
-use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use League\CLImate\CLImate;
 use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
+use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 
 class CommandLineInterface implements CommandLineInterfaceContract
 {

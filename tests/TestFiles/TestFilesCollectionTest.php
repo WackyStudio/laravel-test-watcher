@@ -2,8 +2,8 @@
 
 namespace WackyStudio\LaravelTestWatcher\Tests\TestFiles;
 
-use PHPUnit\Framework\TestCase;
 use Illuminate\Support\Collection;
+use PHPUnit\Framework\TestCase;
 use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 use WackyStudio\LaravelTestWatcher\TestFiles\TestFilesCollection;
 

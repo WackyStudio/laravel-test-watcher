@@ -2,13 +2,13 @@
 
 namespace WackyStudio\LaravelTestWatcher;
 
-use Symfony\Component\Process\Process;
-use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
+use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
 use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
 use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
-use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
-use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
+use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 
 class PHPUnitRunner implements PHPUnitRunnerContract
 {
