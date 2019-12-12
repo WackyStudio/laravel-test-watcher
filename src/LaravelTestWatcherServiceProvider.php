@@ -2,18 +2,18 @@
 
 namespace WackyStudio\LaravelTestWatcher;
 
+use Illuminate\Support\ServiceProvider;
 use League\CLImate\CLImate;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
-use Illuminate\Support\ServiceProvider;
+use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
 use WackyStudio\LaravelTestWatcher\Console\TestWatcherCommand;
-use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
-use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
-use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
-use WackyStudio\LaravelTestWatcher\Finders\TestsAnnotatedWithWatchFinder;
 use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 use WackyStudio\LaravelTestWatcher\Contracts\CommandLineInterfaceContract;
-use WackyStudio\LaravelTestWatcher\CommandLineInterface\CommandLineInterface;
+use WackyStudio\LaravelTestWatcher\Contracts\PHPUnitRunnerContract;
+use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
+use WackyStudio\LaravelTestWatcher\Finders\TestsAnnotatedWithWatchFinder;
+use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
 
 class LaravelTestWatcherServiceProvider extends ServiceProvider
 {

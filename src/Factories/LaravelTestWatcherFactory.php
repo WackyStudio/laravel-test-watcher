@@ -3,14 +3,14 @@
 namespace WackyStudio\LaravelTestWatcher\Factories;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use React\EventLoop\LoopInterface;
 use Symfony\Component\Finder\Finder;
-use Illuminate\Support\Facades\Config;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
+use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
 use Yosymfony\ResourceWatcher\Crc32ContentHash;
 use Yosymfony\ResourceWatcher\ResourceCacheMemory;
-use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
-use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
+use Yosymfony\ResourceWatcher\ResourceWatcher;
 
 class LaravelTestWatcherFactory
 {

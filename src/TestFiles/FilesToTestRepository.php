@@ -3,8 +3,8 @@
 namespace WackyStudio\LaravelTestWatcher\TestFiles;
 
 use Illuminate\Support\Collection;
-use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
 use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
+use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
 
 class FilesToTestRepository
 {
