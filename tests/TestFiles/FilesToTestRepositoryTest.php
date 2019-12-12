@@ -3,11 +3,11 @@
 namespace WackyStudio\LaravelTestWatcher\Tests\TestFiles;
 
 use Orchestra\Testbench\TestCase;
-use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
-use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
-use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
 use WackyStudio\LaravelTestWatcher\Contracts\AnnotatedTestsFinderContract;
 use WackyStudio\LaravelTestWatcher\Facades\LaravelTestWatcher as LaravelTestWatcherFacade;
+use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
+use WackyStudio\LaravelTestWatcher\TestFiles\FilesToTestRepository;
+use WackyStudio\LaravelTestWatcher\TestFiles\TestFile;
 
 class FilesToTestRepositoryTest extends TestCase
 {

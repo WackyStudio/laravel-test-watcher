@@ -2,11 +2,11 @@
 
 namespace WackyStudio\LaravelTestWatcher\Tests\Finders;
 
-use PHPUnit\Framework\TestCase;
 use Illuminate\Support\Collection;
-use WackyStudio\LaravelTestWatcher\TestFiles\InvalidTestFile;
+use PHPUnit\Framework\TestCase;
 use WackyStudio\LaravelTestWatcher\Contracts\TestFileContract;
 use WackyStudio\LaravelTestWatcher\Finders\TestsAnnotatedWithWatchFinder;
+use WackyStudio\LaravelTestWatcher\TestFiles\InvalidTestFile;
 
 class WatchAnnotatedTestsFinderTest extends TestCase
 {
