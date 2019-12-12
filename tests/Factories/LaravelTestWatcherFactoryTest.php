@@ -3,10 +3,10 @@
 namespace WackyStudio\LaravelTestWatcher\Tests\Factories;
 
 use Orchestra\Testbench\TestCase;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcher;
 use WackyStudio\LaravelTestWatcher\LaravelTestWatcherServiceProvider;
-use WackyStudio\LaravelTestWatcher\Factories\LaravelTestWatcherFactory;
+use Yosymfony\ResourceWatcher\ResourceWatcher;
 
 class LaravelTestWatcherFactoryTest extends TestCase
 {
