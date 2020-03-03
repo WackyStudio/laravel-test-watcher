@@ -13,7 +13,7 @@ class LaravelTestWatcherFactoryTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-          LaravelTestWatcherServiceProvider::class,
+            LaravelTestWatcherServiceProvider::class,
         ];
     }
 

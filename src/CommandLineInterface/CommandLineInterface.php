@@ -72,9 +72,9 @@ class CommandLineInterface implements CommandLineInterfaceContract
                 $failed = collect($file->getFailedTests());
 
                 return collect([
-                   "<underline><bold><white>{$file->getNamespace()}\\</white><yellow>{$file->getClassName()}</yellow></bold></underline>",
-                   "\n",
-               ])->merge(collect($file->getMethodsToWatch())->map(function ($item) use ($passed, $failed) {
+                    "<underline><bold><white>{$file->getNamespace()}\\</white><yellow>{$file->getClassName()}</yellow></bold></underline>",
+                    "\n",
+                ])->merge(collect($file->getMethodsToWatch())->map(function ($item) use ($passed, $failed) {
                    if ($passed->contains($item)) {
                        return "<green>{$item}</green>";
                    } elseif ($failed->contains(function ($failed) use ($item) {
