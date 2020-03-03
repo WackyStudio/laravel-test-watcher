@@ -150,7 +150,7 @@ class TestFilesCollectionTest extends TestCase
         $result = $newCollection->compareToOldCollection($oldCollection);
         $this->assertEquals([
             'added' => [
-               $testFileThree,
+                $testFileThree,
             ],
             'updated' => [
                 [
