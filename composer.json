@@ -17,13 +17,13 @@
     ],
     "require": {
         "php": "^7.2",
-        "illuminate/support": "5.8.*|6.*",
+        "illuminate/support": "5.8.*|6.*|7.*",
         "league/climate": "^3.5",
         "react/event-loop": "^1.1",
         "spatie/laravel-collection-macros": "^6.0",
-        "symfony/console": "^4.2",
-        "symfony/finder": "^4.2",
-        "symfony/process": "^4.2",
+        "symfony/console": "^4.2|5.*",
+        "symfony/finder": "^4.2|5.*",
+        "symfony/process": "^4.2|5.*",
         "wyrihaximus/react-child-process-promise": "^2.0",
         "yosymfony/resource-watcher": "^2.0"
     },

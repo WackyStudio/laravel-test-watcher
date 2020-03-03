@@ -49,3 +49,7 @@ Added Laravel 6.* Compatibility
 ## 1.0.11 - 2019-12-12
 
 Bumped up other dependencies for compatibility with Laravel 6.7.0
+
+## 1.0.12 - 2020-03-03
+
+Added Laravel 7 Compatibility
