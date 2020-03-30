@@ -21,15 +21,13 @@ class TestWatcherCommand extends Command
     private function changeEnvironment()
     {
         if (file_exists(base_path('.env.testing'))) {
-
-            try{
+            try {
                 $dotenv = Dotenv::create(base_path(), '.env.testing');
                 $dotenv->overload();
-            }catch (\TypeError $error){
+            } catch (\TypeError $error) {
                 $dotenv = Dotenv::createMutable(base_path(), '.env.testing');
                 $dotenv->load();
             }
-
         }
     }
 }

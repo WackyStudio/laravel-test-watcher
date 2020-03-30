@@ -75,16 +75,16 @@ class CommandLineInterface implements CommandLineInterfaceContract
                     "<underline><bold><white>{$file->getNamespace()}\\</white><yellow>{$file->getClassName()}</yellow></bold></underline>",
                     "\n",
                 ])->merge(collect($file->getMethodsToWatch())->map(function ($item) use ($passed, $failed) {
-                   if ($passed->contains($item)) {
-                       return "<green>{$item}</green>";
-                   } elseif ($failed->contains(function ($failed) use ($item) {
-                       return $failed['method'] === $item;
-                   })) {
-                       return "<red>{$item}</red>";
-                   } else {
-                       return $item;
-                   }
-               }))->pad($rowsNeeded + 2, '<black></black>');
+                    if ($passed->contains($item)) {
+                        return "<green>{$item}</green>";
+                    } elseif ($failed->contains(function ($failed) use ($item) {
+                        return $failed['method'] === $item;
+                    })) {
+                        return "<red>{$item}</red>";
+                    } else {
+                        return $item;
+                    }
+                }))->pad($rowsNeeded + 2, '<black></black>');
             });
         $this->climate->columns($tests->transpose()->toArray());
     }
