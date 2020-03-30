@@ -53,3 +53,8 @@ Bumped up other dependencies for compatibility with Laravel 6.7.0
 ## 1.0.12 - 2020-03-03
 
 Added Laravel 7 Compatibility
+
+## 1.0.13 - 2020-03-30
+
+Fixed an issue where DotEnv would give an error on Laravel 7, since the way to initialize DotEnv v4 has been changed from DotEnv v3.
+The package now supports both versions.
